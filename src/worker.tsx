@@ -36,10 +36,6 @@ const app = defineApp([
   async ({ ctx, request, response, isAction }) => {
     await setupDb(env);
 
-    // This is to help prevent an issue with prisma and vite and workers loading
-    // see https://github.com/cloudflare/workers-sdk/pull/8283/files
-    await db.$queryRaw`SELECT 1`;
-
     setupSessionStore(env);
 
     try {
